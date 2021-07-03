@@ -135,7 +135,7 @@ local api = require "luci.model.cbi.bypass.api"
 		if (v_type === "ss") {
 			var v_server = opt.get("server");
 			var v_port = opt.get("server_port");
-			var v_method = opt.get("ss_encrypt_method");
+			var v_method = opt.get("encrypt_method_ss");
 			var v_password = opt.get("password");
 			
 			url = b64encsafe(v_method.value + ":" + v_password.value) + "@" +
@@ -143,12 +143,12 @@ local api = require "luci.model.cbi.bypass.api"
 				v_port.value + "/?";
 			
 			var params = "";
-			var v_plugin = opt.get("ss_plugin").value;
+			var v_plugin = opt.get("plugin").value;
 			if (v_plugin && v_plugin != "none") {
 				if (v_plugin == "simple-obfs" || v_plugin == "obfs-local") {
 					v_plugin = "obfs-local";
 				}
-				var v_plugin_opts = opt.get("ss_plugin_opts").value;
+				var v_plugin_opts = opt.get("plugin_opts").value;
 				if (v_plugin_opts && v_plugin_opts != "") {
 					v_plugin += encodeURI(";" + v_plugin_opts);
 				}
